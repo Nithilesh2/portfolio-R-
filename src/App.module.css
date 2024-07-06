@@ -1,0 +1,30 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  cursor: none;
+}
+.desktop {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  background-color: red;
+  background-image: url("./assets/8-bit-bg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.customCursor {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  height: 50px;
+  width: 50px;
+  z-index: 999;
+  background-image: url("./assets/mouse_cicker_hand_clicker_sand_timer_and_loupe_pixelated.svg");
+  background-size: contain;
+  pointer-events: none;
+  z-index: 9999;
+  transform: rotate(-25deg);
+  transform-origin: center;
+}
