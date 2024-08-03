@@ -91,6 +91,17 @@
 .bottomDownCancel {
   color: rgb(123, 123, 123);
 }
+.forgotPassword {
+  height: auto;
+  width: 100%;
+  padding-top: 10px;
+  padding-right: 20px;
+  color: rgb(0, 0, 141);
+  font-size: 1.2rem;
+  cursor: default;
+  display: flex;
+  justify-content: flex-end;
+}
 @media only screen and (max-width: 450px) {
   .logonBoxBottomUserName,
   .logonBoxBottomPassword {

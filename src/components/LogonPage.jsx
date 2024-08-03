@@ -10,7 +10,7 @@ const LogonPage = () => {
 
   const okBtnClicked = () => {
     if (userNameRef.current.value === "admin") {
-      if (passwordRef.current.value === "123") {
+      if (passwordRef.current.value === "Admin") {
         navigate("/main")
       }
       if (passwordRef.current.value !== "123") {
@@ -62,6 +62,14 @@ const LogonPage = () => {
             </button>
             <button className={styles.bottomDownCancel}>Cancel</button>
             <button className={styles.bottomDownShutdown}>Shutdown...</button>
+          </div>
+          <div
+            className={styles.forgotPassword}
+            onClick={() => {
+              alert("User Name: 'admin' or 'Admin'\nPassword: '123'")
+            }}
+          >
+            forgot password?
           </div>
         </div>
       </div>
