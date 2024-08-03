@@ -9,15 +9,17 @@ const LogonPage = () => {
   const navigate = useNavigate()
 
   const okBtnClicked = () => {
-    if (userNameRef.current.value === "admin") {
-      if (passwordRef.current.value === "Admin") {
+    if (
+      userNameRef.current.value === "admin" ||
+      userNameRef.current.value === "Admin"
+    ) {
+      if (passwordRef.current.value === "123") {
         navigate("/main")
       }
       if (passwordRef.current.value !== "123") {
         alert("Wrong password...")
       }
-    }
-    if (userNameRef.current.value !== "admin") {
+    } else {
       alert("Wrong user name...")
     }
   }
