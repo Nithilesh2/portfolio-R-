@@ -1,6 +1,7 @@
 import React, { useRef } from "react"
 import styles from "../styles/LogonPage.module.css"
 import { useNavigate } from "react-router-dom"
+import CustomCursor from "./CustomCursor"
 
 const LogonPage = () => {
   const userNameRef = useRef(null)
@@ -9,6 +10,13 @@ const LogonPage = () => {
   const navigate = useNavigate()
 
   const okBtnClicked = () => {
+    if (userNameRef.current.value === "") {
+      alert("User name is required...")
+      return
+    } else if (passwordRef.current.value === "") {
+      alert("Password is required...")
+      return
+    }
     if (
       userNameRef.current.value === "admin" ||
       userNameRef.current.value === "Admin"
@@ -26,6 +34,7 @@ const LogonPage = () => {
 
   return (
     <>
+      <CustomCursor />
       <div className={styles.logonPage}>
         <div className={styles.logonBox}>
           <div className={styles.logonBoxTop}>Enter Password</div>

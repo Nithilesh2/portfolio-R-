@@ -172,7 +172,9 @@ const Home = () => {
             </div>
           )}
         </div>
+        
       </div>
+      <TaskBar />
       {name.map((data) => (
         <TaskBar key="index" source={fileIconUrl} />
       ))}
