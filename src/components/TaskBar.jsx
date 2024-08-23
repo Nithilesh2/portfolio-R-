@@ -5,6 +5,7 @@ import {
   FaBirthdayCake,
   FaCaretRight,
   FaGamepad,
+  FaMoon,
   FaMotorcycle,
   FaUser,
 } from "react-icons/fa"
@@ -12,6 +13,7 @@ import { GiSpades } from "react-icons/gi"
 import moment from "moment"
 import AppContext from "../context/AppContext"
 import { useNavigate } from "react-router-dom"
+import { useBattery } from "react-use"
 
 const TaskBar = (props) => {
   const navigate = useNavigate()
@@ -25,10 +27,29 @@ const TaskBar = (props) => {
     taskBarSkillsClose,
     minimizeSkills,
     setMinimizeSkills,
+    taskBarProjectsClose,
+    setMinimizeProjects,
+    minimizeProjects,
+    closeProjects,
+    closeStudy,
+    setMinimizeStudy,
+    minimizeStudy,
+    taskBarStudyClose,
+    closeSchool,
+    setMinimizeSchool,
+    minimizeSchool,
+    taskBarSchoolClose,
+    closeIntermediate,
+    setMinimizeIntermediate,
+    minimizeIntermediate,
+    taskBarIntermediateClose,
+    closeBtech,
+    setMinimizeBtech,
+    minimizeBtech,
+    taskBarBtechClose,
   } = useContext(AppContext)
 
   const [currentTime, setCurrentTime] = useState(moment().format("hh:mm A"))
-  const [battery, setBattery] = useState({ level: 1 })
   const [menu, setMenu] = useState(true)
 
   useEffect(() => {
@@ -39,36 +60,15 @@ const TaskBar = (props) => {
     return () => clearInterval(interval)
   }, [])
 
-  useEffect(() => {
-    let batteryObject = null
-
-    const updateBatteryInfo = (battery) => {
-      setBattery({
-        level: Math.floor(battery.level * 100),
-      })
-    }
-
-    navigator.getBattery().then((batt) => {
-      batteryObject = batt
-      updateBatteryInfo(batteryObject)
-
-      batteryObject.addEventListener("levelchange", () =>
-        updateBatteryInfo(batteryObject)
-      )
-    })
-
-    return () => {
-      if (batteryObject) {
-        batteryObject.removeEventListener("levelchange", () =>
-          updateBatteryInfo(batteryObject)
-        )
-      }
-    }
-  }, [])
-
   const startMenu = () => {
     setMenu(!menu)
   }
+
+  const batteryState = useBattery()
+
+  const batteryPercentage = batteryState.level
+    ? (batteryState.level * 100).toFixed(0)
+    : "N/A"
 
   return (
     <div className={styles.taskBarMain}>
@@ -106,6 +106,10 @@ const TaskBar = (props) => {
             <hr />
             <li onClick={() => navigate("/")}>
               <IoLockClosed /> <p>Lock</p>
+            </li>
+            <hr />
+            <li>
+              <FaMoon /> <p>Sleep</p>
             </li>
             <hr />
             <li>
@@ -147,10 +151,70 @@ const TaskBar = (props) => {
             </button>
           </div>
         )}
+
+        {!closeProjects && (
+          <div
+            className={styles.windowsStart}
+            onClick={() => setMinimizeProjects(!minimizeProjects)}
+          >
+            <img src={props.source} alt="ima" />
+            <button className={styles.closeTaskBar}>
+              <IoCloseOutline onClick={taskBarProjectsClose} />
+            </button>
+          </div>
+        )}
+
+        {!closeStudy && (
+          <div
+            className={styles.windowsStart}
+            onClick={() => setMinimizeStudy(!minimizeStudy)}
+          >
+            <img src={props.source} alt="ima" />
+            <button className={styles.closeTaskBar}>
+              <IoCloseOutline onClick={taskBarStudyClose} />
+            </button>
+          </div>
+        )}
+
+        {!closeSchool && (
+          <div
+            className={styles.windowsStart}
+            onClick={() => setMinimizeSchool(!minimizeSchool)}
+          >
+            <img src={props.source} alt="ima" />
+            <button className={styles.closeTaskBar}>
+              <IoCloseOutline onClick={taskBarSchoolClose} />
+            </button>
+          </div>
+        )}
+
+        {!closeIntermediate && (
+          <div
+            className={styles.windowsStart}
+            onClick={() => setMinimizeIntermediate(!minimizeIntermediate)}
+          >
+            <img src={props.source} alt="ima" />
+            <button className={styles.closeTaskBar}>
+              <IoCloseOutline onClick={taskBarIntermediateClose} />
+            </button>
+          </div>
+        )}
+
+        {!closeBtech && (
+          <div
+            className={styles.windowsStart}
+            onClick={() => setMinimizeBtech(!minimizeBtech)}
+          >
+            <img src={props.source} alt="ima" />
+            <button className={styles.closeTaskBar}>
+              <IoCloseOutline onClick={taskBarBtechClose} />
+            </button>
+          </div>
+        )}
       </div>
       <div className={styles.windowsRight}>
         <div className={styles.windowsStart}>{currentTime}</div>
-        <p className={styles.windowsBattery}>Level: {battery.level}%</p>
+        <p className={styles.windowsBattery}>Level: {batteryPercentage}%</p>
       </div>
     </div>
   )

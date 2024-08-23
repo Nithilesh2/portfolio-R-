@@ -17,6 +17,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
 }
 .customCursor {
   position: absolute;
@@ -33,11 +34,18 @@
   transform-origin: center;
 }
 .leftOne,
-.leftTwo {
+.leftTwo,
+.leftThree,
+.leftFour {
   height: auto;
-  width: 100px;
+  width: 100%;
   padding: 20px 0 0 20px;
 }
+.dragBox {
+  height: 400px;
+  width: auto;
+}
+
 .resumeFolder {
   height: 100%;
   width: 100px;
@@ -47,7 +55,7 @@
   position: relative;
 }
 .resumeFolder img {
-  z-index: 50;
+  /* z-index: 0; */
   position: relative;
   height: 50px;
   width: 50px;
@@ -66,7 +74,7 @@
   height: 450px;
   max-width: 550px;
   width: 80%;
-  z-index: 999;
+  z-index: 900;
   background-color: rgb(171, 171, 171);
   border: 3px solid rgb(255, 255, 255);
 }
@@ -150,3 +158,9 @@
   padding-top: 4px;
 }
 /* Skills */
+.studySkillsBox {
+  height: auto;
+  width: 100%;
+  display: flex;
+  padding: 15px 0 0 15px;
+}

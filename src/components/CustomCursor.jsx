@@ -8,8 +8,6 @@ const CustomCursor = () => {
   useEffect(() => {
     const handleMouseMove = (e) => {
       setCursorPosition({ x: e.pageX, y: e.pageY })
-
-      // Check if cursor is near the edges of the window
       if (
         e.pageX + 30 >= window.innerWidth ||
         e.pageY + 30 >= window.innerHeight ||

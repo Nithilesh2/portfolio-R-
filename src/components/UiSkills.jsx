@@ -1,5 +1,5 @@
 import React from "react"
-import Rating from "../components/Rating"
+import Rating from "./Rating"
 import styles from "../styles/UiSkills.module.css"
 
 const UiSkills = () => {

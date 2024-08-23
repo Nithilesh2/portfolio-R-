@@ -10,6 +10,26 @@ const AppStore = (props) => {
   const [closeSkills, setCloseSkills] = useState(true)
   const [screenSizeSkills, setScreenSizeSkills] = useState(true)
 
+  const [minimizeProjects, setMinimizeProjects] = useState(true)
+  const [closeProjects, setCloseProjects] = useState(true)
+  const [screenSizeProjects, setScreenSizeProjects] = useState(true)
+
+  const [minimizeStudy, setMinimizeStudy] = useState(true)
+  const [closeStudy, setCloseStudy] = useState(true)
+  const [screenSizeStudy, setScreenSizeStudy] = useState(true)
+
+  const [minimizeSchool, setMinimizeSchool] = useState(true)
+  const [closeSchool, setCloseSchool] = useState(true)
+  const [screenSizeSchool, setScreenSizeSchool] = useState(true)
+
+  const [minimizeIntermediate, setMinimizeIntermediate] = useState(true)
+  const [closeIntermediate, setCloseIntermediate] = useState(true)
+  const [screenSizeIntermediate, setScreenSizeIntermediate] = useState(true)
+
+  const [minimizeBtech, setMinimizeBtech] = useState(true)
+  const [closeBtech, setCloseBtech] = useState(true)
+  const [screenSizeBtech, setScreenSizeBtech] = useState(true)
+
   const [name, setName] = useState([])
 
   const fileIconUrl =
@@ -39,9 +59,59 @@ const AppStore = (props) => {
     setMinimizeSkills(false)
     setName((prev) => [{ ...prev, name: "Skills" }])
   }
-
   const taskBarSkillsClose = () => {
     setCloseSkills(true)
+  }
+
+  //Projects
+  const projectsDoubleClick = () => {
+    setCloseProjects(!closeProjects)
+    setMinimizeProjects(false)
+    setName((prev) => [{ ...prev, name: "Projects" }])
+  }
+
+  const taskBarProjectsClose = () => {
+    setCloseProjects(true)
+  }
+
+  //Study
+  const studyDoubleClick = () => {
+    setCloseStudy(!closeStudy)
+    setMinimizeStudy(false)
+    setName((prev) => [{ ...prev, name: "Study" }])
+  }
+  const taskBarStudyClose = () => {
+    setCloseStudy(true)
+  }
+
+  //School
+  const schoolDoubleClick = () => {
+    setCloseSchool(!closeSchool)
+    setMinimizeSchool(false)
+    setName((prev) => [{ ...prev, name: "School" }])
+  }
+  const taskBarSchoolClose = () => {
+    setCloseSchool(true)
+  }
+
+  //Intermediate
+  const intermediateDoubleClick = () => {
+    setCloseIntermediate(!closeIntermediate)
+    setMinimizeIntermediate(false)
+    setName((prev) => [{ ...prev, name: "Intermediate" }])
+  }
+  const taskBarIntermediateClose = () => {
+    setCloseIntermediate(true)
+  }
+
+  //Btech
+  const btechDoubleClick = () => {
+    setCloseBtech(!closeBtech)
+    setMinimizeBtech(false)
+    setName((prev) => [{ ...prev, name: "Btech" }])
+  }
+  const taskBarBtechClose = () => {
+    setCloseBtech(true)
   }
 
   return (
@@ -67,6 +137,46 @@ const AppStore = (props) => {
         setScreenSizeSkills,
         name,
         setName,
+        projectsDoubleClick,
+        screenSizeProjects,
+        setScreenSizeProjects,
+        minimizeProjects,
+        setMinimizeProjects,
+        taskBarProjectsClose,
+        setCloseProjects,
+        closeProjects,
+        studyDoubleClick,
+        taskBarStudyClose,
+        minimizeStudy,
+        setMinimizeStudy,
+        screenSizeStudy,
+        setScreenSizeStudy,
+        closeStudy,
+        setCloseStudy,
+        minimizeSchool,
+        setMinimizeSchool,
+        closeSchool,
+        setCloseSchool,
+        screenSizeSchool,
+        setScreenSizeSchool,
+        schoolDoubleClick,
+        taskBarSchoolClose,
+        minimizeIntermediate,
+        setMinimizeIntermediate,
+        closeIntermediate,
+        setCloseIntermediate,
+        screenSizeIntermediate,
+        setScreenSizeIntermediate,
+        intermediateDoubleClick,
+        taskBarIntermediateClose,
+        minimizeBtech,
+        setMinimizeBtech,
+        closeBtech,
+        setCloseBtech,
+        screenSizeBtech,
+        setScreenSizeBtech,
+        btechDoubleClick,
+        taskBarBtechClose,
       }}
     >
       {props.children}

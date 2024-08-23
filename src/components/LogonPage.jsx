@@ -1,20 +1,30 @@
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import styles from "../styles/LogonPage.module.css"
 import { useNavigate } from "react-router-dom"
 import CustomCursor from "./CustomCursor"
+import ReactLoading from "react-loading"
 
 const LogonPage = () => {
   const userNameRef = useRef(null)
   const passwordRef = useRef(null)
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
   const okBtnClicked = () => {
     if (userNameRef.current.value === "") {
-      alert("User name is required...")
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+        alert("User name is required...")
+      }, 2000)
       return
     } else if (passwordRef.current.value === "") {
-      alert("Password is required...")
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+        alert("Password is required...")
+      }, 3000)
       return
     }
     if (
@@ -22,13 +32,25 @@ const LogonPage = () => {
       userNameRef.current.value === "Admin"
     ) {
       if (passwordRef.current.value === "123") {
-        navigate("/main")
+        setLoading(true)
+        setTimeout(() => {
+          navigate("/main")
+          setLoading(false)
+        }, 5000)
       }
       if (passwordRef.current.value !== "123") {
-        alert("Wrong password...")
+        setLoading(true)
+        setTimeout(() => {
+          setLoading(false)
+          alert("Wrong password...")
+        }, 2000)
       }
     } else {
-      alert("Wrong user name...")
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+        alert("Wrong user name...")
+      }, 3000)
     }
   }
 
@@ -83,6 +105,16 @@ const LogonPage = () => {
             forgot password?
           </div>
         </div>
+        {loading ? (
+          <ReactLoading
+            type={"spinningBubbles"}
+            color={"blue"}
+            height={"60px"}
+            width={"60px"}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </>
   )
