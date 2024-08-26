@@ -175,7 +175,7 @@ const AppStore = (props) => {
   }
 
   useIdleTimer({
-    timeout: 70000,
+    timeout: 10000,
     onIdle: handleOnIdle,
   })
 
