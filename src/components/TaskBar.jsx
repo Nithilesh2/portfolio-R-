@@ -8,12 +8,14 @@ import {
   FaMoon,
   FaMotorcycle,
   FaUser,
+  // FaUser,
 } from "react-icons/fa"
 import { GiSpades } from "react-icons/gi"
 import moment from "moment"
 import AppContext from "../context/AppContext"
 import { useNavigate } from "react-router-dom"
 import { useBattery } from "react-use"
+import Avatar from "react-initials-avatar"
 
 const TaskBar = (props) => {
   const navigate = useNavigate()
@@ -47,6 +49,8 @@ const TaskBar = (props) => {
     setMinimizeBtech,
     minimizeBtech,
     taskBarBtechClose,
+    userName,
+    setUserActivityStatus,
   } = useContext(AppContext)
 
   const [currentTime, setCurrentTime] = useState(moment().format("hh:mm A"))
@@ -77,9 +81,18 @@ const TaskBar = (props) => {
       ) : (
         <div className={styles.windowsTop}>
           <ul className={styles.windowsTopStartMenu}>
-            <li>
-              <FaUser /> <p>Admin</p>
-            </li>
+            <div className={styles.userBox}>
+              <div className={styles.userBoxProfile}>
+                {userName ? (
+                  <Avatar name={userName} size={50} />
+                ) : (
+                  <>
+                    <FaUser />
+                  </>
+                )}
+              </div>
+              {userName ? <p>{userName}</p> : <p>Admin</p>}
+            </div>
             <hr />
             <li className={styles.gameBox}>
               <div className={styles.gameBoxLeft}>
@@ -108,7 +121,7 @@ const TaskBar = (props) => {
               <IoLockClosed /> <p>Lock</p>
             </li>
             <hr />
-            <li>
+            <li onClick={() => setUserActivityStatus(true)}>
               <FaMoon /> <p>Sleep</p>
             </li>
             <hr />

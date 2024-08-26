@@ -36,7 +36,8 @@
 .leftOne,
 .leftTwo,
 .leftThree,
-.leftFour {
+.leftFour,
+.leftFive {
   height: auto;
   width: 100%;
   padding: 20px 0 0 20px;
@@ -47,7 +48,7 @@
 }
 
 .resumeFolder {
-  height: 100%;
+  height: auto;
   width: 100px;
   display: flex;
   flex-direction: column;
@@ -59,6 +60,10 @@
   position: relative;
   height: 50px;
   width: 50px;
+}
+.myResumeBoxActiveSmall .resumeImage {
+  height: 382px;
+  width: 380px;
 }
 .resume {
   font-size: 1rem;
@@ -135,6 +140,8 @@
   color: black;
   background-color: #ffffff;
   border: 2px solid rgb(63, 63, 63);
+  display: flex;
+  gap: 5rem;
 }
 .resumeDownload {
   height: 80px;

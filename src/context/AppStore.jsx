@@ -1,5 +1,7 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import AppContext from "./AppContext"
+import { useNavigate } from "react-router-dom"
+import { useIdleTimer } from "react-idle-timer"
 
 const AppStore = (props) => {
   const [minimizeResume, setMinimizeResume] = useState(true)
@@ -29,6 +31,14 @@ const AppStore = (props) => {
   const [minimizeBtech, setMinimizeBtech] = useState(true)
   const [closeBtech, setCloseBtech] = useState(true)
   const [screenSizeBtech, setScreenSizeBtech] = useState(true)
+
+  const [loading, setLoading] = useState(false)
+  const [userName, setUserName] = useState("")
+  const userNameRef = useRef(null)
+  const passwordRef = useRef(null)
+  const navigate = useNavigate()
+
+  const [userActivityStatus, setUserActivityStatus] = useState(false)
 
   const [name, setName] = useState([])
 
@@ -114,6 +124,61 @@ const AppStore = (props) => {
     setCloseBtech(true)
   }
 
+  //logout page
+  const okBtnClicked = () => {
+    setUserName(userNameRef.current.value)
+    if (userNameRef.current.value === "") {
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+        alert("User name is required...")
+      }, 2000)
+      return
+    } else if (passwordRef.current.value === "") {
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+        alert("Password is required...")
+      }, 3000)
+      return
+    }
+    if (
+      userNameRef.current.value === "admin" ||
+      userNameRef.current.value === "Admin"
+    ) {
+      if (passwordRef.current.value === "123") {
+        setLoading(true)
+        setTimeout(() => {
+          navigate("/main")
+          setLoading(false)
+        }, 5000)
+      }
+      if (passwordRef.current.value !== "123") {
+        setLoading(true)
+        setTimeout(() => {
+          setLoading(false)
+          alert("Wrong password...")
+        }, 2000)
+      }
+    } else {
+      setLoading(true)
+      setTimeout(() => {
+        navigate("/main")
+        setLoading(false)
+      }, 3000)
+    }
+  }
+
+  //user Activity
+  const handleOnIdle = () => {
+    setUserActivityStatus(true)
+  }
+
+  useIdleTimer({
+    timeout: 70000,
+    onIdle: handleOnIdle,
+  })
+
   return (
     <AppContext.Provider
       value={{
@@ -177,6 +242,18 @@ const AppStore = (props) => {
         setScreenSizeBtech,
         btechDoubleClick,
         taskBarBtechClose,
+        //,
+        loading,
+        setLoading,
+        userName,
+        setUserName,
+        userNameRef,
+        passwordRef,
+        okBtnClicked,
+        //,
+        userActivityStatus,
+        setUserActivityStatus,
+        handleOnIdle,
       }}
     >
       {props.children}

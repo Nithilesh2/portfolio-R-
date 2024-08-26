@@ -1,58 +1,12 @@
-import React, { useRef, useState } from "react"
+import React, { useContext } from "react"
 import styles from "../styles/LogonPage.module.css"
-import { useNavigate } from "react-router-dom"
 import CustomCursor from "./CustomCursor"
 import ReactLoading from "react-loading"
+import AppContext from "../context/AppContext"
 
 const LogonPage = () => {
-  const userNameRef = useRef(null)
-  const passwordRef = useRef(null)
-  const [loading, setLoading] = useState(false)
-
-  const navigate = useNavigate()
-
-  const okBtnClicked = () => {
-    if (userNameRef.current.value === "") {
-      setLoading(true)
-      setTimeout(() => {
-        setLoading(false)
-        alert("User name is required...")
-      }, 2000)
-      return
-    } else if (passwordRef.current.value === "") {
-      setLoading(true)
-      setTimeout(() => {
-        setLoading(false)
-        alert("Password is required...")
-      }, 3000)
-      return
-    }
-    if (
-      userNameRef.current.value === "admin" ||
-      userNameRef.current.value === "Admin"
-    ) {
-      if (passwordRef.current.value === "123") {
-        setLoading(true)
-        setTimeout(() => {
-          navigate("/main")
-          setLoading(false)
-        }, 5000)
-      }
-      if (passwordRef.current.value !== "123") {
-        setLoading(true)
-        setTimeout(() => {
-          setLoading(false)
-          alert("Wrong password...")
-        }, 2000)
-      }
-    } else {
-      setLoading(true)
-      setTimeout(() => {
-        setLoading(false)
-        alert("Wrong user name...")
-      }, 3000)
-    }
-  }
+  const { userNameRef, passwordRef, okBtnClicked, loading } =
+    useContext(AppContext)
 
   return (
     <>

@@ -18,9 +18,12 @@ import {
   FaSchool,
 } from "react-icons/fa"
 import UiProjects from "./UiProjects"
-
 import Draggable from "react-draggable"
 import StudyDetaild from "./StudyDetaild"
+import SleepPage from "./SleepPage"
+import "../styles/SleepPage.module.css"
+import resumeImage from "../assets/resumePic.png"
+import wikipediaImage from "../assets/Wikipedia-logo.png"
 
 const Home = () => {
   const {
@@ -94,6 +97,7 @@ const Home = () => {
   return (
     <>
       <CustomCursor />
+      <SleepPage />
       <div className={styles.desktop}>
         <div className={styles.leftOne}>
           <div
@@ -159,8 +163,13 @@ const Home = () => {
                           title="Click to download"
                           onClick={resumeDownload}
                         />
-                        <div>Resume</div>
+                        <div>Resume Download</div>
                       </div>
+                      <img
+                        src={resumeImage}
+                        alt="resume"
+                        className={styles.resumeImage}
+                      />
                     </div>
                     <div className={styles.myResumeBottom}>
                       <p>1 Object(s)</p>
@@ -1455,7 +1464,18 @@ const Home = () => {
           )}
         </div>
 
-        <div className={styles.leftFive}></div>
+        <div className={styles.leftFive}>
+          <div
+            className={styles.resumeFolder}
+            // onDoubleClick={projectsDoubleClick}
+            onDoubleClick={() => {
+              alert("In Progress")
+            }}
+          >
+            <img src={wikipediaImage} alt="wikipedia" />
+            <div className={styles.resume}>Wikipedia</div>
+          </div>
+        </div>
       </div>
       <TaskBar />
       {name.map((data) => (
